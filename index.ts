@@ -1,5 +1,9 @@
 import express, { RequestHandler } from "express";
 import { isNamedExportBindings } from "typescript";
+import {
+  createPostControler,
+  listPostControler,
+} from "./controlers/postControlers";
 import { db } from "./datastore";
 
 const app = express();
@@ -13,14 +17,7 @@ const requestLoggerMiddleware: RequestHandler = (req, res, next) => {
 
 app.use(requestLoggerMiddleware);
 
-app.get("/posts", (request, response) => {
-  response.send({ posts: db.listPost() });
-});
-
-app.post("/posts", (request, response) => {
-  const post = request.body;
-  db.createPost(post);
-  response.sendStatus(200);
-});
+app.get("/posts", listPostControler);
+app.post("/posts", createPostControler);
 
 app.listen(3000);
