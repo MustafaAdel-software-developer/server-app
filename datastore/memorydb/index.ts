@@ -12,8 +12,8 @@ export class InMemoryDatastore implements Datastore {
   getUserByEmail(email: string): User | undefined {
     return this.users.find((u) => u.email === email);
   }
-  getUserByUsername(email: string): User | undefined {
-    return this.users.find((u) => u.username === email);
+  getUserByUsername(username: string): User | undefined {
+    return this.users.find((u) => u.username === username);
   }
   listPost(): Post[] {
     return this.posts;
